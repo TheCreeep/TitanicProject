@@ -1,10 +1,12 @@
 <template>
   <div id="data">
-    <client-only>
-      <!--  eslint-disable-next-line vue/attribute-hyphenation -->
-      <PieChart :data="survivorChartData" :options="options"></PieChart>
-      <PieChart :data="sexChartData" :options="options"></PieChart>
-    </client-only>
+    <h1 class="title">Quelques Stats</h1>
+    <div class="charts">
+      <client-only>
+        <PieChart :data="survivorChartData" :options="options"></PieChart>
+        <PieChart :data="sexChartData" :options="options"></PieChart>
+      </client-only>
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ export default {
           {
             label: 'Survivants',
             data: this.$store.state.aliveStats,
-            backgroundColor: ['#41B883', '#E46651'],
+            backgroundColor: ['green', '#FF2030'],
           },
         ],
       },
@@ -65,4 +67,24 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+#data {
+  .title {
+    font-family: 'Lato', sans-serif;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .charts {
+    display: flex;
+    client-only {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 50px;
+    }
+  }
+}
+</style>

@@ -5,10 +5,9 @@
 </template>
 
 <script>
-
 export default {
   name: 'IndexPage',
-  layout:"LandingLayout",
+  layout: 'LandingLayout',
   data() {
     return {
       data: [],
@@ -19,7 +18,8 @@ export default {
   },
   methods: {
     async getPassengers() {
-      await this.$axios.get('/api/data')
+      await this.$axios
+        .get('/api/data')
         .then((response) => {
           this.data = response.data
         })
@@ -33,4 +33,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+#index-page {
+  font-family: Lato;
+}
 </style>

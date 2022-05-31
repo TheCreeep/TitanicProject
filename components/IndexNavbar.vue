@@ -6,6 +6,7 @@
           src="https://3wa.fr/wp-content/uploads/2020/01/cropped-big.png"
           alt=""
           class="logo-3wa"
+           @click="$router.push('/')"
         />
       </template>
       <vs-navbar-item
@@ -21,6 +22,13 @@
         @click="$router.push('/data')"
       >
         Data
+      </vs-navbar-item>
+      <vs-navbar-item
+        id="search"
+        :active="active == 'search'"
+        @click="$router.push('/search')"
+      >
+        Recherche
       </vs-navbar-item>
       <template #right>
         <vs-button flat color="blue">Login</vs-button>

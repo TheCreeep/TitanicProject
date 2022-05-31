@@ -2,6 +2,7 @@ const state = () => ({
     passengers: [],
     aliveStats: [],
     sexStats: [],
+    searchResult: []
 })
 
 const actions = {
@@ -17,6 +18,13 @@ const actions = {
                 console.log(error)
             })
     },
+
+    async GET_SEARCH_PASSENGERS({ commit }, payload) {
+        await this.$axios.get(`/api/data/${payload.age}/${payload.class}/${payload.sex}`)
+            .then((response) => {
+                commit('SET_SEARCH_RESULT', response.data)
+            })
+    }
 }
 
 const mutations = {
@@ -29,6 +37,10 @@ const mutations = {
     SET_MALE_FEMALE_PASSENGERS(state) {
         state.sexStats = [state.passengers.filter((passenger) => passenger.Sex === "male").length, state.passengers.filter((passenger) => passenger.Sex === "female").length]
     },
+    SET_SEARCH_RESULT(state, searchResult) {
+        state.searchResult = searchResult
+    }
+
 
 }
 
