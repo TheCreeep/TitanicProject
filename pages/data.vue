@@ -70,6 +70,8 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 #data {
+  margin-top: 6em;
+
   .title {
     font-family: 'Lato', sans-serif;
     font-size: 2em;

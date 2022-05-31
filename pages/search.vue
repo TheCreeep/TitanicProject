@@ -1,7 +1,7 @@
 <template>
   <div id="search">
     <h1 class="title">Rechercher :</h1>
-    <div class="search-panel">
+    <div class="search-panel" @keyup.enter="searchHandle">
       <vs-button @click="resetInputs()">Reset</vs-button>
       <vs-select v-model="sex" label="Sexe">
         <vs-option label="Homme" value="homme"> Homme </vs-option>
@@ -113,6 +113,7 @@ export default {
   * {
     font-family: Lato;
   }
+  margin-top: 6em;
   .title {
     text-align: center;
   }
