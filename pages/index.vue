@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <p v-for="passenger in data" :key="passenger.id">{{ passenger.Name }}</p>
+  <div id="index-page">
+    <p v-for="passenger in data" :key="passenger.id">{{ passenger }}</p>
   </div>
 </template>
 
 <script>
-/* import PassengerModel from '../models/passenger.js' */
 
 export default {
   name: 'IndexPage',
+  layout:"LandingLayout",
   data() {
     return {
       data: [],
@@ -18,12 +18,8 @@ export default {
     this.getPassengers()
   },
   methods: {
-    /* Api Call on localhost:3000/data that puts into this.data tab */
     async getPassengers() {
-      await this.$axios({
-        method: 'get',
-        url: '/api/data',
-      })
+      await this.$axios.get('/api/data')
         .then((response) => {
           this.data = response.data
         })
@@ -35,3 +31,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+
+#index-page{
+  margin-top: 6em;
+}
+</style>
