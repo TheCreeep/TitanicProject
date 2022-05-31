@@ -1,6 +1,6 @@
 <template>
   <div id="navbar">
-    <vs-navbar v-model="active" :color="active" center-collapsed>
+    <vs-navbar v-model="active" color="primary" center-collapsed text-white>
       <template #left>
         <img
           src="https://3wa.fr/wp-content/uploads/2020/01/cropped-big.png"
@@ -8,14 +8,22 @@
           class="logo-3wa"
         />
       </template>
-      <vs-navbar-item id="guide" :active="active == 'guide'">
+      <vs-navbar-item
+        id="accueil"
+        :active="active == 'accueil'"
+        @click="$router.push('/')"
+      >
         Accueil
       </vs-navbar-item>
-      <vs-navbar-item id="docs" :active="active == 'docs'">
+      <vs-navbar-item
+        id="data"
+        :active="active == 'data'"
+        @click="$router.push('/data')"
+      >
         Data
       </vs-navbar-item>
       <template #right>
-        <vs-button flat>Login</vs-button>
+        <vs-button flat color="blue">Login</vs-button>
       </template>
     </vs-navbar>
   </div>
@@ -26,7 +34,10 @@ export default {
   name: 'IndexNavbar',
   data() {
     return {
-      active: 'accueil',
+      active:
+        this.$route.path.split('/')[1] === ''
+          ? 'accueil'
+          : this.$route.path.split('/')[1],
     }
   },
 }

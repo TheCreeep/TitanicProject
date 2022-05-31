@@ -33,8 +33,4 @@ export default {
 </script>
 
 <style lang="scss">
-
-#index-page{
-  margin-top: 6em;
-}
 </style>
