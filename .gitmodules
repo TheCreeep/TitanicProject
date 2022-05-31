@@ -1,0 +1,3 @@
+[submodule "TitanicAPI"]
+	path = TitanicAPI
+	url = https://github.com/TheCreeep/TitanicAPI
