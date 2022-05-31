@@ -1,7 +1,9 @@
 <template>
   <div id="data">
     <client-only>
-      <PieChart :data="chartData" :options="options"></PieChart>
+      <!--  eslint-disable-next-line vue/attribute-hyphenation -->
+      <PieChart :data="survivorChartData" :options="options"></PieChart>
+      <PieChart :data="sexChartData" :options="options"></PieChart>
     </client-only>
   </div>
 </template>
@@ -17,14 +19,25 @@ export default {
       data: [],
       options: {
         responsive: true,
+        maintainAspectRatio: false,
       },
-      chartData: {
+      survivorChartData: {
         labels: ['Vivants', 'Morts'],
         datasets: [
           {
             label: 'Survivants',
             data: this.$store.state.aliveStats,
             backgroundColor: ['#41B883', '#E46651'],
+          },
+        ],
+      },
+      sexChartData: {
+        labels: ['Homme', 'Femme'],
+        datasets: [
+          {
+            label: 'Survivants',
+            data: this.$store.state.sexStats,
+            backgroundColor: ['#019EDE', '#F20079'],
           },
         ],
       },
@@ -36,6 +49,9 @@ export default {
     },
     aliveStats() {
       return this.$store.state.aliveStats
+    },
+    sexStats() {
+      return this.$store.state.sexStats
     },
   },
   created() {
@@ -49,8 +65,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-#pie-chart {
-  width: 400px;
-}
-</style>
+<style lang="scss"></style>
