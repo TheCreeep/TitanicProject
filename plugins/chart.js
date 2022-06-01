@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import { Pie, mixins } from 'vue-chartjs'
+import { Doughnut, mixins } from 'vue-chartjs'
 const { reactiveProp } = mixins
 
 Vue.component('PieChart', {
     name: 'PieChart',
-    extends: Pie,
+    extends: Doughnut,
     mixins: [reactiveProp],
     // eslint-disable-next-line vue/require-prop-types
     props: ["data", "options"],

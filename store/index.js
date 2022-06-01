@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const state = () => ({
     passengers: [],
     aliveStats: [],
@@ -20,7 +21,28 @@ const actions = {
     },
 
     async GET_SEARCH_PASSENGERS({ commit }, payload) {
-        await this.$axios.get(`/api/data/${payload.age}/${payload.class}/${payload.sex}`)
+
+        // eslint-disable-next-line prefer-const
+        let { sexe, age, classe } = payload
+
+        // eslint-disable-next-line eqeqeq
+        // eslint-disable-next-line no-unused-expressions
+        sexe === "femme" ? sexe = "female" : sexe === "homme" ? sexe = "male" : ""
+
+        let link = ['/api/data/search?']
+        if (sexe !== '') {
+            link.push('Sex=' + sexe)
+        }
+        if (age !== '') {
+            link.push('Age=' + +age)
+        }
+        if (classe !== '') {
+            link.push('Pclass=' + +classe)
+        }
+
+        link = link.join('&')
+
+        await this.$axios.get(link)
             .then((response) => {
                 commit('SET_SEARCH_RESULT', response.data)
             })

@@ -8,7 +8,7 @@
         <vs-option label="Femme" value="femme"> Femme </vs-option>
       </vs-select>
 
-      <vs-input v-model="age" type="number" label="Age" />
+      <vs-input v-model="age" min="0" max="100" type="number" label="Age" />
 
       <vs-select v-model="classe" label="Classe">
         <vs-option label="Premiere Classe" value="1">
@@ -28,6 +28,7 @@
           <vs-tr>
             <vs-th> PassengerId </vs-th>
             <vs-th> Survivant ? </vs-th>
+            <vs-th> Classe </vs-th>
             <vs-th> Name </vs-th>
             <vs-th> Age </vs-th>
             <vs-th> Sexe </vs-th>
@@ -47,9 +48,10 @@
           >
             <vs-td> {{ passenger.PassengerId }} </vs-td>
             <vs-td> {{ passenger.Survived === 1 ? 'Oui' : 'Non' }} </vs-td>
+            <vs-td> {{ passenger.Pclass }} </vs-td>
             <vs-td> {{ passenger.Name }} </vs-td>
             <vs-td> {{ passenger.Age }} </vs-td>
-            <vs-td> {{ passenger.Sexe }} </vs-td>
+            <vs-td> {{ passenger.Sex === 'male' ? 'Homme' : 'Femme' }} </vs-td>
             <vs-td> {{ passenger.SibSp }} </vs-td>
             <vs-td> {{ passenger.Parch }} </vs-td>
             <vs-td> {{ passenger.Ticket }} </vs-td>
@@ -71,9 +73,9 @@ export default {
 
   data() {
     return {
-      sex: 'homme',
-      age: 40,
-      classe: 1,
+      sex: '',
+      age: '',
+      classe: '',
     }
   },
   computed: {
@@ -94,14 +96,14 @@ export default {
     searchHandle() {
       this.$store.dispatch('GET_SEARCH_PASSENGERS', {
         age: this.age,
-        sex: this.sex === 'homme' ? 'male' : 'female',
-        class: this.classe,
+        sexe: this.sex,
+        classe: this.classe,
       })
     },
     resetInputs() {
-      this.sex = 'homme'
-      this.age = 40
-      this.classe = 1
+      this.sex = ''
+      this.age = ''
+      this.classe = ''
     },
   },
 }

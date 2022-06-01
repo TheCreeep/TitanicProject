@@ -49,6 +49,7 @@ export default {
     font-size: 17em;
     margin: 0 0.5em 0 0.5em;
     animation:slideleft 1.5s ease-in-out;
+    color:#F8F8FF;
   }
   
   .subtitle {
@@ -56,6 +57,7 @@ export default {
     margin: 0 0.5em 0 0;
     text-align: right;
     animation:slideright 1.5s ease-in-out;
+    color:#F8F8FF;
   }
 }
 
