@@ -42,6 +42,12 @@
             :options="options"
           ></DoughtnutChart>
         </div>
+        <barChart
+          v-if="searchResult.length !== 0"
+          class="barChart"
+          :data="ageChartData"
+          :options="options"
+        ></barChart>
         <div v-if="searchResult.length !== 0" class="infos__text">
           <h1>
             Moyenne d'age de la recherche : {{ getMoyenneAge.toFixed(2) }}
@@ -145,6 +151,38 @@ export default {
           },
         ],
       },
+      ageChartData: {
+        labels: [
+          '0-10',
+          '11-20',
+          '21-30',
+          '31-40',
+          '41-50',
+          '51-60',
+          '61-70',
+          '71-80',
+          '81-90',
+          '91-100',
+        ],
+        datasets: [
+          {
+            label: 'Age',
+            data: this.$store.state.searchResultDetails.ages,
+            backgroundColor: [
+              '#ff000055',
+              '#ffa50055',
+              '#ffff0055',
+              '#00ff0055',
+              '#0000ff55',
+              '#a52a2a55',
+              '#ff00ff55',
+              '#00ffff55',
+              '#ffffff55',
+              '#ff005555',
+            ],
+          },
+        ],
+      },
     }
   },
   computed: {
@@ -233,6 +271,9 @@ export default {
         display: flex;
         justify-content: center;
         gap: 8em;
+      }
+      .barChart {
+        padding: 4em;
       }
     }
   }

@@ -25,7 +25,7 @@ export default {
   plugins: [
     { src: '~/plugins/vuesax.js', mode: 'client', ssr: false },
     { src: '~/plugins/doughnutChart.js', mode: 'client' },
-    { src: '~/plugins/lineChart.js', mode: 'client' }
+    { src: '~/plugins/barChart.js', mode: 'client' }
   ],
 
 

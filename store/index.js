@@ -81,8 +81,20 @@ const mutations = {
         state.searchResultDetails.survivors = [state.searchResult.filter((passenger) => passenger.Survived).length, state.searchResult.filter((passenger) => !passenger.Survived).length]
         state.searchResultDetails.sex = [state.searchResult.filter((passenger) => passenger.Sex === "male").length, state.searchResult.filter((passenger) => passenger.Sex === "female").length]
         state.searchResultDetails.class = [state.searchResult.filter((passenger) => passenger.Pclass === 1).length, state.searchResult.filter((passenger) => passenger.Pclass === 2).length, state.searchResult.filter((passenger) => passenger.Pclass === 3).length]
-    },
-
+        state.searchResultDetails.ages = [
+            state.searchResult.filter((passenger) => passenger.Age > 0 && passenger.Age <= 10).length,
+            state.searchResult.filter((passenger) => passenger.Age > 10 && passenger.Age <= 20).length,
+            state.searchResult.filter((passenger) => passenger.Age > 20 && passenger.Age <= 30).length,
+            state.searchResult.filter((passenger) => passenger.Age > 30 && passenger.Age <= 40).length,
+            state.searchResult.filter((passenger) => passenger.Age > 40 && passenger.Age <= 50).length,
+            state.searchResult.filter((passenger) => passenger.Age > 50 && passenger.Age <= 60).length,
+            state.searchResult.filter((passenger) => passenger.Age > 60 && passenger.Age <= 70).length,
+            state.searchResult.filter((passenger) => passenger.Age > 70 && passenger.Age <= 80).length,
+            state.searchResult.filter((passenger) => passenger.Age > 80 && passenger.Age <= 90).length,
+            state.searchResult.filter((passenger) => passenger.Age > 90).length
+        ]
+    }
+    ,
     SET_AGE_INPUT(state, ageInput) {
         state.ageInput = ageInput
     },
@@ -92,6 +104,7 @@ const mutations = {
     SET_CLASS_INPUT(state, classInput) {
         state.classInput = classInput
     },
+
 
 
 }
