@@ -23,8 +23,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vuesax.js', mode: 'client' },
-    { src: '~/plugins/chart.js', mode: 'client' }
+    { src: '~/plugins/vuesax.js', mode: 'client', ssr: false },
+    { src: '~/plugins/doughnutChart.js', mode: 'client' },
+    { src: '~/plugins/lineChart.js', mode: 'client' }
   ],
 
 

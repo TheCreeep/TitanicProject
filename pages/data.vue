@@ -3,14 +3,25 @@
     <h1 class="title">Quelques Stats</h1>
     <div class="charts">
       <client-only>
-        <PieChart :data="survivorChartData" :options="options"></PieChart>
-        <PieChart :data="sexChartData" :options="options"></PieChart>
+        <DoughtnutChart
+          :data="survivorChartData"
+          :options="options"
+        ></DoughtnutChart>
+        <DoughtnutChart
+          :data="sexChartData"
+          :options="options"
+        ></DoughtnutChart>
+        <DoughtnutChart
+          :data="classChartData"
+          :options="options"
+        ></DoughtnutChart>
       </client-only>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'DataPage',
 
@@ -43,6 +54,16 @@ export default {
           },
         ],
       },
+      classChartData: {
+        labels: ['Premiere Classe', 'Seconde Classe', 'Classe Eco'],
+        datasets: [
+          {
+            label: 'Classe',
+            data: this.$store.state.classStats,
+            backgroundColor: ['#404040', '#a0b6f7', '#F2F261'],
+          },
+        ],
+      },
     }
   },
   computed: {
@@ -54,6 +75,9 @@ export default {
     },
     sexStats() {
       return this.$store.state.sexStats
+    },
+    classStats() {
+      return this.$store.state.classStats
     },
   },
   created() {
