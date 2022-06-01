@@ -119,6 +119,11 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
       },
       survivorChartData: {
         labels: ['Vivants', 'Morts'],
@@ -166,7 +171,7 @@ export default {
         ],
         datasets: [
           {
-            label: 'Age',
+            label: 'Repartitions des Ages',
             data: this.$store.state.searchResultDetails.ages,
             backgroundColor: [
               '#ff000055',
@@ -180,6 +185,19 @@ export default {
               '#ffffff55',
               '#ff005555',
             ],
+            borderColor: [
+              '#ff000099',
+              '#ffa50099',
+              '#ffff0099',
+              '#00ff0099',
+              '#0000ff99',
+              '#a52a2a99',
+              '#ff00ff99',
+              '#00ffff99',
+              '#ffffff99',
+              '#ff005599',
+            ],
+            borderWidth: 3,
           },
         ],
       },
