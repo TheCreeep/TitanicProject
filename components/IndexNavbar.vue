@@ -35,6 +35,8 @@
       <template v-else #right>
         {{ user.username }}
         <vs-button flat color="blue" @click="disconnect()"
+         
+        
           >Se déconnecter</vs-button
         >
       </template>

@@ -97,6 +97,7 @@ const actions = {
                 })
 
                 commit('SET_USER', { email: response.user.email, username: response.user.username })
+                this.$router.push("/search")
                 return;
             }
 

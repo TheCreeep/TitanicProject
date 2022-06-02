@@ -44,6 +44,7 @@ export default {
     margin: 0 0.5em 0 0;
     text-align: right;
     animation:slideright 1.5s ease-in-out;
+    animation-delay: 0.5s;
     color:#F8F8FF;
   }
 }
@@ -64,6 +65,7 @@ export default {
     opacity: 0;
     -webkit-transform: translateX(100%);
   }
+ 
   100% {
     opacity: 1;
     -webkit-transform: translateX(0);
