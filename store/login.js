@@ -5,6 +5,10 @@ const state = () => ({
 
 const actions = {
 
+    DISCONNECT_USER({ commit }) {
+        commit('SET_USER', {})
+    },
+
     async LOGIN_USER({ commit }, payload) {
         const { password, email } = payload
 
@@ -91,6 +95,8 @@ const actions = {
                     iconPack: 'feather',
                     icon: "<i class='bx bx-check'></i>",
                 })
+
+                commit('SET_USER', { email: response.user.email, username: response.user.username })
                 return;
             }
 

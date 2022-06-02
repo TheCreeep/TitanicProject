@@ -9,27 +9,33 @@
           @click="$router.push('/')"
         />
         <vs-navbar-item
-        id="accueil"
-        :active="active == 'accueil'"
-        @click="$router.push('/')"
-      >
-        Accueil
-      </vs-navbar-item>
-      <vs-navbar-item
-        id="search"
-        :active="active == 'search'"
-        @click="$router.push('/search')"
-      >
-        Recherche
-      </vs-navbar-item>
+          id="accueil"
+          :active="active == 'accueil'"
+          @click="$router.push('/')"
+        >
+          Accueil
+        </vs-navbar-item>
+        <vs-navbar-item
+          id="search"
+          :active="active == 'search'"
+          @click="$router.push('/search')"
+        >
+          Recherche
+        </vs-navbar-item>
       </template>
-      
-      <template #right>
+
+      <template v-if="!isUserConnected" #right>
         <vs-button flat color="blue" @click="$router.push('/register')"
           >Créer un compte</vs-button
         >
         <vs-button flat color="blue" @click="$router.push('/login')"
           >Se connecter</vs-button
+        >
+      </template>
+      <template v-else #right>
+        {{ user.username }}
+        <vs-button flat color="blue" @click="disconnect()"
+          >Se déconnecter</vs-button
         >
       </template>
     </vs-navbar>
@@ -47,6 +53,20 @@ export default {
           : this.$route.path.split('/')[1],
     }
   },
+  computed: {
+    isUserConnected() {
+      return Object.keys(this.$store.state.login.user).length !== 0
+    },
+    user() {
+      return this.$store.state.login.user
+    },
+  },
+  methods: {
+    disconnect() {
+      this.$store.dispatch('login/DISCONNECT_USER')
+      this.$router.push('/')
+    },
+  },
 }
 </script>
 
@@ -57,6 +77,5 @@ export default {
     padding: 0.5em;
     width: 50px;
   }
-
 }
 </style>

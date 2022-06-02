@@ -63,7 +63,11 @@ export default {
       hasVisiblePassword: false,
     }
   },
+  
   computed: {
+    isUserConnected() {
+      return Object.keys(this.$store.state.login.user).length !== 0
+    },
     getProgress() {
       let progress = 0
       if (/\d/.test(this.user.password)) {
@@ -83,6 +87,11 @@ export default {
       }
       return progress
     },
+  },
+  created() {
+        if (this.isUserConnected) {
+            this.$router.push('/')
+        }
   },
   methods: {
     validateEmail() {

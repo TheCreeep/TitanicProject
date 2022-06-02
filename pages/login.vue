@@ -1,9 +1,14 @@
 <template>
   <div id="login-page">
-  <h1 class="title">Se Connecter</h1>
+    <h1 class="title">Se Connecter</h1>
     <!-- Login with VS input and VS button-->
     <div class="inputs">
-      <vs-input v-model="user.email" class="email" label-placeholder="Email" @keyup.enter="login"/>
+      <vs-input
+        v-model="user.email"
+        class="email"
+        label-placeholder="Email"
+        @keyup.enter="login"
+      />
       <vs-input
         v-model="user.password"
         type="password"
@@ -45,6 +50,9 @@ export default {
     }
   },
   computed: {
+    isUserConnected() {
+      return Object.keys(this.$store.state.login.user).length !== 0
+    },
     getProgress() {
       let progress = 0
       if (/\d/.test(this.user.password)) {
@@ -64,6 +72,11 @@ export default {
       }
       return progress
     },
+  },
+  created() {
+    if (this.isUserConnected) {
+      this.$router.push('/')
+    }
   },
   methods: {
     validateEmail() {
@@ -123,9 +136,9 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-.title{
-    font-size:4em;
-}
+  .title {
+    font-size: 4em;
+  }
   .inputs {
     display: flex;
     flex-direction: column;
