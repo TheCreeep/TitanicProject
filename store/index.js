@@ -105,8 +105,6 @@ const mutations = {
         state.classInput = classInput
     },
 
-
-
 }
 
 export default {

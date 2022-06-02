@@ -8,8 +8,7 @@
           class="logo-3wa"
           @click="$router.push('/')"
         />
-      </template>
-      <vs-navbar-item
+        <vs-navbar-item
         id="accueil"
         :active="active == 'accueil'"
         @click="$router.push('/')"
@@ -23,8 +22,15 @@
       >
         Recherche
       </vs-navbar-item>
+      </template>
+      
       <template #right>
-        <vs-button flat color="blue">Login</vs-button>
+        <vs-button flat color="blue" @click="$router.push('/register')"
+          >Créer un compte</vs-button
+        >
+        <vs-button flat color="blue" @click="$router.push('/login')"
+          >Se connecter</vs-button
+        >
       </template>
     </vs-navbar>
   </div>
@@ -51,5 +57,6 @@ export default {
     padding: 0.5em;
     width: 50px;
   }
+
 }
 </style>

@@ -12,14 +12,13 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   server: {
     port: 8000,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/css/global.css"],
+  css: ["~/css/global.css", 'boxicons/css/boxicons.min.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -49,8 +48,20 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.API_URL,
     proxy: true
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'login', method: 'post', propertyName: 'data.token' },
+          user: { url: 'me', method: 'get', propertyName: 'data' },
+          logout: false
+        }
+      }
+    }
   },
 
   proxy: {
